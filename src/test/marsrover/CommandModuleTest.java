@@ -34,4 +34,14 @@ public class CommandModuleTest {
         verify(motor, times(1)).turnRight();
     }
 
+    @Test
+    void givenMoveInstruction_issuesMoveCommand() {
+        Motor motor = mock(Motor.class);
+        CommandModule commandDecoder = new CommandModule(motor);
+
+        commandDecoder.acceptCommand("M");
+
+        verify(motor, times(1)).moveForward();
+    }
+
 }

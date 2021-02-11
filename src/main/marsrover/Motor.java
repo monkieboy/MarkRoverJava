@@ -8,4 +8,8 @@ public class Motor {
     public void turnRight() {
         throw new UnsupportedOperationException();
     }
+
+    public void moveForward() {
+        throw new UnsupportedOperationException();
+    }
 }
