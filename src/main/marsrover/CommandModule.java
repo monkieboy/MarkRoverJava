@@ -9,12 +9,16 @@ public class CommandModule {
     }
 
     public void acceptCommand(String commands) {
-        if (commands.equals("L")){
-            motor.turnLeft();
-        } else if (commands.equals("R")){
-            motor.turnRight();
-        } else if (commands.equals("M")){
-            motor.moveForward();
+        for (char c : commands.toCharArray()) {
+            if (c == 'L'){
+                motor.turnLeft();
+
+            } else if (c == 'R'){
+                motor.turnRight();
+
+            } else if (c == 'M'){
+                motor.moveForward();
+            }
         }
     }
 }

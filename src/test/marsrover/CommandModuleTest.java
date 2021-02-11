@@ -1,6 +1,8 @@
 package marsrover;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.InOrder;
+import org.mockito.Mockito;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -8,11 +10,6 @@ import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 
 public class CommandModuleTest {
-
-    // L   | R   | M
-    // LLL | RRR | MMM
-    // LRM | ...
-    // CommandType <enum> ... MOVE, TURN_RIGHT, TURN_LEFT
 
     @Test
     void givenTurnLeftInstruction_issuesTurnLeftCommand() {
@@ -42,6 +39,19 @@ public class CommandModuleTest {
         commandDecoder.acceptCommand("M");
 
         verify(motor, times(1)).moveForward();
+    }
+
+    @Test
+    void givenMultiStepInstruction_issuesAppropriateCommands() {
+        Motor motor = mock(Motor.class);
+        CommandModule commandDecoder = new CommandModule(motor);
+        InOrder inOrder = Mockito.inOrder(motor);
+
+        commandDecoder.acceptCommand("LRM");
+
+        inOrder.verify(motor).turnLeft();
+        inOrder.verify(motor).turnRight();
+        inOrder.verify(motor).moveForward();
     }
 
 }
