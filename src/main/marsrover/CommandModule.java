@@ -10,6 +10,11 @@ public class CommandModule {
     }
 
     public void acceptCommand(String commands) {
-        motor.turnLeft();
+
+        if (commands.equals("L")){
+            motor.turnLeft();
+        } else {
+            motor.turnRight();
+        }
     }
 }
