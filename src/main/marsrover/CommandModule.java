@@ -9,16 +9,20 @@ public class CommandModule {
     }
 
     public void acceptCommand(String commands) {
-        for (char c : commands.toCharArray()) {
-            if (c == 'L'){
-                motor.turnLeft();
+        for (char command : commands.toCharArray()) {
+            carryOutCommand(command);
+        }
+    }
 
-            } else if (c == 'R'){
-                motor.turnRight();
+    private void carryOutCommand(char command) {
+        if (command == 'L'){
+            motor.turnLeft();
 
-            } else if (c == 'M'){
-                motor.moveForward();
-            }
+        } else if (command == 'R'){
+            motor.turnRight();
+
+        } else if (command == 'M'){
+            motor.moveForward();
         }
     }
 }
